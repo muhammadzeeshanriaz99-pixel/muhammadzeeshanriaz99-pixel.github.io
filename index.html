@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flarix Studios | Next-Gen Indie Gaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VIBRANT CYBERPUNK COLOR PALETTE --- */
+        :root {
+            --bg-deep: #030712;
+            --bg-card: #0b1329;
+            --neon-blue: #00f0ff;
+            --electric-purple: #9d4edd;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        /* --- GLOBAL & RESET STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.05) 0%, transparent 40%);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        /* --- GLOW EFFECTS --- */
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--neon-blue);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        nav ul a:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        #hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, var(--neon-blue), var(--electric-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #hero p {
+            font-size: 1.6rem;
+            max-width: 700px;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, var(--neon-blue), var(--electric-purple));
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.4);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 240, 255, 0.7);
+        }
+
+        /* --- SECTIONS COMMON --- */
+        section {
+            padding: 100px 10%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--neon-blue);
+            margin: 10px auto 0;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* --- GAMES SECTION --- */
+        .game-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .game-showcase { grid-template-columns: 1fr; }
+            #hero h1 { font-size: 2.8rem; }
+        }
+
+        .game-media {
+            background: var(--bg-card);
+            border: 2px solid rgba(0, 240, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 350px;
+            position: relative;
+        }
+
+        .game-placeholder-art {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .game-info h3 {
+            font-size: 2.5rem;
+            color: var(--neon-blue);
+            margin-bottom: 15px;
+        }
+
+        .game-info p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .specs-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .specs-list li {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .specs-list li::before {
+            content: '⚡';
+            color: var(--neon-blue);
+        }
+
+        /* --- ABOUT / MISSION SECTION --- */
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #0b1329, #050a14);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #02040a;
+            padding: 40px 5%;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        footer p span {
+            color: var(--neon-blue);
+            font-weight: bold;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">FLARIX<span>STUDIOS</span></a>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero">
+        <img src="Developer Icon.png" alt="Flarix Logo" class="hero-logo" onerror="this.src='Removal-40.png'">
+        <h1 class="neon-glow">Flarix Studios</h1>
+        <p>Crafting hyper-vibrant, adrenaline-fueled 2D mobile experiences where precise mechanics meet immersive worlds.</p>
+        <a href="#games" class="btn">Explore Our Projects</a>
+    </section>
+
+    <section id="games">
+        <h2 class="section-title">Our Games</h2>
+        
+        <div class="game-showcase">
+            <div class="game-media">
+                <div style="text-align:center;">
+                    <h4 style="font-family:'Orbitron'; font-size:2rem; color:var(--neon-blue); margin-bottom:10px;">POOR BIRD</h4>
+                    <p style="color:var(--text-muted)">10 Levels of Pure Side-Scrolling Challenge</p>
+                </div>
+            </div>
+            
+            <div class="game-info">
+                <h3>Poor Bird</h3>
+                <p>Prepare for an intense, precision-based journey! Poor Bird challenges players to navigate hazardous environments with flawless timing and responsive movement. Engineered inside Unity with perfectly tuned 2D physics optimization, every tap matters.</p>
+                
+                <ul class="specs-list">
+                    <li><strong>Engine:</strong> Built on cutting-edge Unity 6 engine architecture.</li>
+                    <li><strong>Gameplay:</strong> 10 high-stakes, meticulously designed progressive levels.</li>
+                    <li><strong>Performance:</strong> Optimized for ultra-smooth 60+ FPS mobile gameplay.</li>
+                    <li><strong>Systems:</strong> Seamlessly integrated ad meditation frameworks built for fluid UX.</li>
+                </ul>
+                
+                <a href="#" class="btn" onclick="alert('Google Play Link coming soon!'); return false;">Get it on Google Play</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">The Studio Mission</h2>
+        
+        <div class="about-cards">
+            <div class="card">
+                <span class="card-icon">🎯</span>
+                <h3>Precision Focus</h3>
+                <p>We believe mobile gaming shouldn't compromise on mechanical depth. Our games prioritize snappy inputs and perfect hitboxes.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">⚡</span>
+                <h3>Vibrant Aesthetic</h3>
+                <p>Striking visual identities, neon palettes, and high-energy asset rendering are built directly into the core DNA of Flarix Studios.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">🚀</span>
+                <h3>Independent Power</h3>
+                <p>Handling every stage of development internally—from C# optimization to Google Play Console distribution systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <span>Flarix Studios</span>. All rights reserved.</p>
+        <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.6;">Designed for high-performance mobile software delivery.</p>
+    </footer>
+
+</body>
+</html>
