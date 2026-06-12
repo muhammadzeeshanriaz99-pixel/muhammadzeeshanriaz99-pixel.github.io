@@ -57,7 +57,7 @@
             100% { text-shadow: 0 0 20px rgba(0, 240, 255, 0.9), 0 0 40px rgba(0, 240, 255, 0.4), 0 0 60px rgba(157, 78, 221, 0.3); }
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION RIBBON --- */
         nav {
             display: flex;
             justify-content: space-between;
@@ -148,11 +148,12 @@
             animation: blink 0.75s step-end infinite;
         }
 
-        /* --- ULTRA-SMOOTH BIDIRECTIONAL SCROLL REVEAL --- */
+        /* --- HIGH-FIDELITY CINEMATIC BIDIRECTIONAL SCROLL REVEAL --- */
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateY(60px);
+            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
         }
 
         .reveal-on-scroll.active {
@@ -160,10 +161,10 @@
             transform: translateY(0);
         }
 
-        /* Card sequence delay lines */
+        /* Premium Individual Card Entry Transitions Sequential Delay Line */
         .stagger-1 { transition-delay: 0s; }
-        .stagger-2 { transition-delay: 0.15s; }
-        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-2 { transition-delay: 0.25s; }
+        .stagger-3 { transition-delay: 0.5s; }
 
         /* --- BUTTONS --- */
         .btn {
@@ -190,7 +191,7 @@
 
         /* --- SECTIONS BASE --- */
         section {
-            padding: 100px 10%;
+            padding: 120px 10%;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
@@ -213,7 +214,7 @@
             border-radius: 2px;
         }
 
-        /* --- FIXED: ULTRA STABLE GAME SHOWCASE GRID --- */
+        /* --- GAME SHOWCASE MATRIX GRID --- */
         .game-showcase {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
@@ -221,7 +222,7 @@
             align-items: center;
         }
 
-        /* Center Grid Box for Game Icon Block */
+        /* Stable Frame Box for Game Icon Block */
         .game-icon-column {
             display: flex;
             flex-direction: column;
@@ -307,18 +308,18 @@
             font-size: 1.2rem;
         }
 
-        /* --- STUDIO MISSION CARDS --- */
+        /* --- PREMIUM MISSION CARDS TYPOGRAPHY UPGRADE --- */
         .about-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 35px;
         }
 
         .card {
             background: linear-gradient(145deg, #0b1329, #040814);
             border: 1px solid rgba(255, 255, 255, 0.03);
             border-radius: 12px;
-            padding: 45px 30px;
+            padding: 50px 35px;
             text-align: center;
             cursor: pointer;
             position: relative;
@@ -332,16 +333,34 @@
             box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
         }
 
+        /* Custom Card Typography Spacing Elements */
+        .card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            word-spacing: 4px;
+        }
+
+        .card p {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            letter-spacing: 0.8px;
+            word-spacing: 1.5px;
+            color: var(--text-muted);
+        }
+
         .card-icon {
             font-size: 3.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: inline-block;
             position: relative;
             transition: transform 0.3s ease;
         }
-        .card:hover .card-icon { transform: scale(1.1); }
 
-        /* Custom Emoji Interactive Animations */
+        /* Custom Emoji Micro-Animation Frames */
         .rocket-blastoff { animation: rocketFly 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards; }
         .target-ripple { animation: targetPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         .bolt-flicker { animation: thunderStrike 0.6s linear infinite alternate; }
@@ -361,7 +380,7 @@
             50% { filter: drop-shadow(0 0 25px var(--neon-blue)) brightness(1.8); transform: scale(1.2) skewX(-10deg); }
         }
 
-        /* --- PREMIUM DOME STUDIO FOOTER --- */
+        /* --- PREMIUM CONNECT STUDIO FOOTER --- */
         .studio-footer {
             background: #030611;
             padding: 80px 10% 40px;
@@ -426,6 +445,24 @@
             color: var(--neon-blue);
         }
 
+        /* FIXED: Legitimate high contrast white shield for the X (Twitter) Logo */
+        .x-white-badge {
+            background-color: #ffffff;
+            color: #000000 !important;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin-right: 2px;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+            transition: transform 0.3s ease;
+        }
+        .footer-social-link:hover .x-white-badge {
+            transform: scale(1.15);
+        }
+
         /* --- RESPONSIVE CROSS-OVER MEDIA QUERIES --- */
         @media (max-width: 992px) {
             .game-showcase, .studio-footer {
@@ -439,9 +476,9 @@
 
         @media (max-width: 600px) {
             .footer-links-grid { grid-template-columns: 1fr; gap: 30px; }
-            nav ul { gap: 18px; }
-            nav ul a { font-size: 0.95rem; }
-            .logo { font-size: 1.25rem; }
+            nav ul { gap: 15px; }
+            nav ul a { font-size: 0.9rem; }
+            .logo { font-size: 1.15rem; }
             .typing-text { font-size: 1.15rem; }
             .game-info h3 { font-size: 2.1rem; }
         }
@@ -459,6 +496,7 @@
             <li><a href="#hero">Home</a></li>
             <li><a href="#games">Games</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#contact">Connect</a></li>
         </ul>
     </nav>
 
@@ -511,23 +549,29 @@
         </div>
     </section>
 
-    <section id="about" class="reveal-on-scroll">
+    <section id="about">
         <h2 class="section-title">The Studio Mission</h2>
         
         <div class="about-cards">
-            <div class="card reveal-on-scroll stagger-1" onclick="animateEmoji(this, 'target-ripple')">
+            <div class="card reveal-on-scroll stagger-1" 
+                 onmouseenter="animateEmoji(this, 'target-ripple')" 
+                 onclick="animateEmoji(this, 'target-ripple')">
                 <span class="card-icon">🎯</span>
                 <h3>Precision Focus</h3>
                 <p>We believe mobile gaming shouldn't compromise mechanics. Our design rules prioritize snappy inputs and pixel-perfect hitboxes.</p>
             </div>
             
-            <div class="card reveal-on-scroll stagger-2" onclick="animateEmoji(this, 'bolt-flicker')">
+            <div class="card reveal-on-scroll stagger-2" 
+                 onmouseenter="animateEmoji(this, 'bolt-flicker')" 
+                 onclick="animateEmoji(this, 'bolt-flicker')">
                 <span class="card-icon">⚡</span>
                 <h3>Vibrant Aesthetic</h3>
                 <p>Striking contrast identities, dynamic neon lighting maps, and beautiful particle setups form the baseline artistic identity of our games.</p>
             </div>
             
-            <div class="card reveal-on-scroll stagger-3" onclick="animateEmoji(this, 'rocket-blastoff')">
+            <div class="card reveal-on-scroll stagger-3" 
+                 onmouseenter="animateEmoji(this, 'rocket-blastoff')" 
+                 onclick="animateEmoji(this, 'rocket-blastoff')">
                 <span class="card-icon">🚀</span>
                 <h3>Independent Power</h3>
                 <p>Handling every single technical phase of execution directly—from core C# assembly logic optimization to production target delivery tracks.</p>
@@ -535,7 +579,7 @@
         </div>
     </section>
 
-    <footer class="studio-footer">
+    <footer class="studio-footer" id="contact">
         <div class="footer-branding">
             <h3>FLARIX<span>STUDIOS</span></h3>
             <p>Pushing the technical parameters of independent mobile arcade gaming. Built for players who demand razor-sharp responsiveness and distinct aesthetics.</p>
@@ -562,7 +606,7 @@
                     <i class="fab fa-discord" style="color:#5865F2;"></i> Join Community Discord
                 </a>
                 <a href="#x" onclick="alert('Studio X Platform handle setup routing active!'); return false;" class="footer-social-link">
-                    <i class="fab fa-x-twitter"></i> Follow Studio X
+                    <span class="x-white-badge"><i class="fab fa-x-twitter"></i></span> Follow Studio X
                 </a>
                 <a href="#instagram" onclick="alert('Instagram asset deployment track configuring!'); return false;" class="footer-social-link">
                     <i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram Behind-Scenes
@@ -576,7 +620,7 @@
 
     <script>
         /* ==========================================================================
-           1. LOOPING INFINITE BACKSPACE TYPEWRITER RUNTIME
+           1. LOOPING MULTI-LINE VISIONARY TYPEWRITER
            ========================================================================== */
         const phrases = [
             "Crafting hyper-vibrant, adrenaline-fueled 2D mobile experiences where precise mechanics meet immersive worlds.",
@@ -593,44 +637,46 @@
             const fullPhraseText = phrases[phraseIdx];
             
             if (!isReversing) {
-                // Forward type run
                 targetTextElement.textContent = fullPhraseText.substring(0, charIdx + 1);
                 charIdx++;
                 
                 if (charIdx === fullPhraseText.length) {
                     isReversing = true;
-                    setTimeout(runTypewriterLoop, 3000); // Wait time for readability
+                    setTimeout(runTypewriterLoop, 3000); // 3-second readability delay
                     return;
                 }
                 setTimeout(runTypewriterLoop, 45);
             } else {
-                // Backspace deletion pass run
                 targetTextElement.textContent = fullPhraseText.substring(0, charIdx - 1);
                 charIdx--;
                 
                 if (charIdx === 0) {
                     isReversing = false;
-                    phraseIdx = (phraseIdx + 1) % phrases.length; // Iteration loop step swap
-                    setTimeout(runTypewriterLoop, 400); // Intermission break
+                    phraseIdx = (phraseIdx + 1) % phrases.length;
+                    setTimeout(runTypewriterLoop, 400); // Pause before starting next line
                     return;
                 }
-                setTimeout(runTypewriterLoop, 20);
+                setTimeout(runTypewriterLoop, 20); // Quick backspacing speed
             }
         }
 
         /* ==========================================================================
-           2. BIDIRECTIONAL SCROLL OBSERVATION LOGIC (Fades In AND Out Both Ways)
+           2. PREMIUM ULTRA-SMOOTH BIDIRECTIONAL SCROLL REVEAL VIEWPORT OBSERVER
            ========================================================================== */
         const bidirectionalObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active'); // Slide up & appear on viewport enter
+                    entry.target.classList.add('active'); // Glide up smoothly when entering view
                 } else {
-                    entry.target.classList.remove('active'); // Fade back out on viewport exit (Up or Down)
+                    // Check if element has left the screen matrix completely to reset state fluidly
+                    const rect = entry.boundingClientRect;
+                    if (rect.top > 0 || rect.bottom < window.innerHeight) {
+                        entry.target.classList.remove('active'); // Fade away gracefully when scrolled past
+                    }
                 }
             });
         }, {
-            threshold: 0.05, // Fires smoothly across mobile and screen matrices
+            threshold: 0.1, // Fires when 10% of cross-section bounds cross layout thresholds
             rootMargin: "0px 0px -20px 0px"
         });
 
@@ -639,7 +685,7 @@
         });
 
         /* ==========================================================================
-           3. CARD CLICK EMOJI POP INTERACTION MATRIX
+           3. DYNAMIC HOVER & TOUCH MOUSE ENTER INTERACTION TRIGGER SYSTEM
            ========================================================================== */
         function animateEmoji(cardNode, targetAnimationClass) {
             const targetEmojiSpan = cardNode.querySelector('.card-icon');
@@ -648,12 +694,13 @@
             
             targetEmojiSpan.classList.add(targetAnimationClass);
             
+            // Wipe class mapping upon structural completion path to register subsequent triggers cleanly
             targetEmojiSpan.addEventListener('animationend', () => {
                 targetEmojiSpan.classList.remove(targetAnimationClass);
             }, { once: true });
         }
 
-        // Master Frame Init
+        // Initialize Runtime Frames
         window.onload = function() {
             runTypewriterLoop();
         };
