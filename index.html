@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -41,7 +42,7 @@
                 radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.07) 0%, transparent 50%);
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 2px;
         }
@@ -103,7 +104,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 80px 20px 40px;
+            padding: 120px 20px 60px;
             position: relative;
         }
 
@@ -117,7 +118,7 @@
         }
 
         #hero h1 {
-            font-size: 4.8rem;
+            font-size: 4.5rem;
             font-weight: 900;
             text-transform: uppercase;
             margin-bottom: 20px;
@@ -126,14 +127,15 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* --- TYPEWRITER CORE STRUCTURE --- */
+        /* --- TYPEWRITER SPACING BOUNDS --- */
         .typing-container {
-            min-height: 70px; /* Locked down spacing so layout doesn't bounce when text backspaces */
-            margin-bottom: 30px;
-            max-width: 850px;
+            min-height: 80px;
+            margin-bottom: 40px;
+            max-width: 800px;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 0 10px;
         }
 
         .typing-text {
@@ -146,11 +148,11 @@
             animation: blink 0.75s step-end infinite;
         }
 
-        /* --- ULTRAMODERN SCROLL-REVEAL ENGINE --- */
+        /* --- ULTRA-SMOOTH BIDIRECTIONAL SCROLL REVEAL --- */
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .reveal-on-scroll.active {
@@ -158,12 +160,12 @@
             transform: translateY(0);
         }
 
-        /* Sequenced staggered item reveal spacing */
+        /* Card sequence delay lines */
         .stagger-1 { transition-delay: 0s; }
         .stagger-2 { transition-delay: 0.15s; }
         .stagger-3 { transition-delay: 0.3s; }
 
-        /* --- BUTTONS WITH INTERACTIVE HOVER ELEMENTS --- */
+        /* --- BUTTONS --- */
         .btn {
             display: inline-block;
             padding: 14px 40px;
@@ -186,15 +188,15 @@
             letter-spacing: 1px;
         }
 
-        /* --- GLOBAL SECTIONS DECORATION --- */
+        /* --- SECTIONS BASE --- */
         section {
-            padding: 100px 8%;
+            padding: 100px 10%;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 60px;
             text-transform: uppercase;
             position: relative;
@@ -211,49 +213,101 @@
             border-radius: 2px;
         }
 
-        /* --- PERFECT UNIVERSAL GAME SHOWCASE GRID --- */
+        /* --- FIXED: ULTRA STABLE GAME SHOWCASE GRID --- */
         .game-showcase {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
             align-items: center;
         }
 
-        .game-media {
-            background: radial-gradient(circle at center, #0e1a3a 0%, var(--bg-card) 100%);
-            border: 2px solid rgba(0, 240, 255, 0.25);
-            border-radius: 16px;
-            padding: 10px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        /* Center Grid Box for Game Icon Block */
+        .game-icon-column {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 380px;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            text-align: center;
+            background: rgba(11, 19, 41, 0.4);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            padding: 40px 20px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
         }
-        .game-media:hover { border-color: var(--neon-blue); box-shadow: 0 0 30px rgba(0, 240, 255, 0.25); }
 
-        .game-art-file { width: 100%; height: 100%; max-height: 360px; object-fit: cover; border-radius: 10px; }
-        .game-placeholder-ui { text-align: center; padding: 20px; }
+        .game-icon-display {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+            border-radius: 24px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 8px 25px rgba(0, 240, 255, 0.4));
+            transition: transform 0.4s ease;
+        }
 
-        .game-info h3 { font-size: 2.8rem; color: #fff; margin-bottom: 20px; }
-        .game-info p { font-size: 1.25rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 25px; text-align: justify; }
+        .game-icon-column:hover .game-icon-display {
+            transform: scale(1.05) rotate(2deg);
+        }
 
-        .specs-list { list-style: none; margin-bottom: 35px; }
-        .specs-list li {
+        .game-media-title {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .game-media-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            max-width: 280px;
+            line-height: 1.4;
+        }
+
+        /* Specs Detail Content Side */
+        .game-info h3 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .game-info p {
             font-size: 1.2rem;
-            margin-bottom: 14px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .specs-list {
+            list-style: none;
+            margin-bottom: 35px;
+        }
+
+        .specs-list li {
+            font-size: 1.15rem;
+            margin-bottom: 16px;
             display: grid;
             grid-template-columns: auto 1fr;
             gap: 15px;
             align-items: start;
-            text-align: left;
+            color: var(--text-main);
         }
-        .specs-icon { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); font-weight: bold; }
 
-        /* --- MISSION INTERACTIVE CARDS --- */
+        .specs-icon {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- STUDIO MISSION CARDS --- */
         .about-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -278,7 +332,6 @@
             box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
         }
 
-        /* --- THE ADVANCED EMOJI ENGINE --- */
         .card-icon {
             font-size: 3.5rem;
             margin-bottom: 20px;
@@ -288,7 +341,7 @@
         }
         .card:hover .card-icon { transform: scale(1.1); }
 
-        /* Custom Emoji Dynamic Animation Sequences */
+        /* Custom Emoji Interactive Animations */
         .rocket-blastoff { animation: rocketFly 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards; }
         .target-ripple { animation: targetPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         .bolt-flicker { animation: thunderStrike 0.6s linear infinite alternate; }
@@ -308,14 +361,14 @@
             50% { filter: drop-shadow(0 0 25px var(--neon-blue)) brightness(1.8); transform: scale(1.2) skewX(-10deg); }
         }
 
-        /* --- HIGH-FIDELITY CYBERPUNK CONNECT FOOTER --- */
+        /* --- PREMIUM DOME STUDIO FOOTER --- */
         .studio-footer {
             background: #030611;
-            padding: 80px 8% 40px;
+            padding: 80px 10% 40px;
             border-top: 1px solid rgba(0, 240, 255, 0.15);
             display: grid;
-            grid-template-columns: 1.5fr 2fr;
-            gap: 40px;
+            grid-template-columns: 1.3fr 2fr;
+            gap: 50px;
         }
 
         .footer-branding h3 {
@@ -323,6 +376,8 @@
             margin-bottom: 15px;
             color: #fff;
         }
+        .footer-branding h3 span { color: var(--neon-blue); }
+        
         .footer-branding p {
             color: var(--text-muted);
             font-size: 1.1rem;
@@ -338,7 +393,6 @@
         }
 
         .footer-column h4 {
-            font-family: 'Orbitron', sans-serif;
             font-size: 1.2rem;
             color: var(--neon-blue);
             margin-bottom: 20px;
@@ -365,28 +419,34 @@
         .footer-social-link:hover {
             color: #fff;
             text-shadow: 0 0 8px var(--neon-blue);
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
         .footer-social-link:hover i {
             transform: scale(1.2);
             color: var(--neon-blue);
         }
 
-        /* MEDIA QUERIES */
-        @media (max-width: 968px) {
-            .game-showcase, .studio-footer { grid-template-columns: 1fr; gap: 40px; }
-            #hero h1 { font-size: 3.2rem; }
-            .typing-text { font-size: 1.2rem; }
-            section { padding: 80px 5%; }
-            .footer-links-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 480px) {
-            nav ul { gap: 15px; }
-            nav ul a { font-size: 0.9rem; }
-            .logo { font-size: 1.2rem; }
+        /* --- RESPONSIVE CROSS-OVER MEDIA QUERIES --- */
+        @media (max-width: 992px) {
+            .game-showcase, .studio-footer {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+            #hero h1 { font-size: 3.5rem; }
+            .section-title { font-size: 2.4rem; }
+            section { padding: 80px 6%; }
         }
 
-        /* FLOATING GRAPHIC KEYFRAMES */
+        @media (max-width: 600px) {
+            .footer-links-grid { grid-template-columns: 1fr; gap: 30px; }
+            nav ul { gap: 18px; }
+            nav ul a { font-size: 0.95rem; }
+            .logo { font-size: 1.25rem; }
+            .typing-text { font-size: 1.15rem; }
+            .game-info h3 { font-size: 2.1rem; }
+        }
+
+        /* FLOATING COMPONENT KEYFRAMES */
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--neon-blue); } }
     </style>
@@ -403,7 +463,7 @@
     </nav>
 
     <section id="hero">
-        <img src="Removal-40.png" alt="Flarix Logo" class="hero-logo" onerror="this.src='Removal-40.png'">
+        <img src="Developer Icon.png" alt="Flarix Logo" class="hero-logo" onerror="this.src='Removal-40.png'">
         <h1 class="neon-glow">Flarix Studios</h1>
         
         <div class="typing-container">
@@ -413,28 +473,14 @@
         <a href="#games" class="btn">Explore Our Projects</a>
     </section>
 
-    <section id="games">
+    <section id="games" class="reveal-on-scroll">
         <h2 class="section-title">Our Games</h2>
         
         <div class="game-showcase">
-            <div class="game-media">
-                <img src="poor-bird-art.png" alt="Poor Bird Showcase Art" class="game-art-file" onerror="this.style.display='none';">
-                <div class="game-placeholder-ui">
-                    <h4 style="font-family:'Orbitron'; font-size:2.2rem; color:var(--neon-blue); margin-bottom:10px; letter-spacing:2px;">POOR BIRD</h4>
-                    <p style="color:var(--text-muted); font-size:1.1rem; font-family:'Orbitron';">10 Levels of Pure Side-Scrolling Challenge</p>
-                </div>
-            </div>
-            
-            <section id="games" class="reveal-on-scroll">
-        <h2 class="section-title">Our Games</h2>
-        
-        <div class="game-showcase">
-            <div class="game-media">
-                <img src="poor-bird-art.png" alt="Poor Bird Showcase Art" class="game-art-file" onerror="this.style.display='none';">
-                <div class="game-placeholder-ui">
-                    <h4 style="font-family:'Orbitron'; font-size:2.2rem; color:var(--neon-blue); margin-bottom:10px; letter-spacing:2px;">POOR BIRD</h4>
-                    <p style="color:var(--text-muted); font-size:1.1rem; font-family:'Orbitron';">10 Levels of Pure Side-Scrolling Challenge</p>
-                </div>
+            <div class="game-icon-column">
+                <img src="Poor Bird Game Icon.png" alt="Poor Bird Game Icon" class="game-icon-display" onerror="this.src='Developer Icon.png'">
+                <h4 class="game-media-title">POOR BIRD</h4>
+                <p class="game-media-subtitle">10 Levels of Pure Side-Scrolling Challenge</p>
             </div>
             
             <div class="game-info">
@@ -460,7 +506,7 @@
                     </li>
                 </ul>
                 
-                <a href="#" class="btn" onclick="alert('Google Play Store listing link is being compiled inside track verification!'); return false;">Get it on Google Play</a>
+                <a href="#" class="btn" onclick="alert('Google Play Store link is updating through verification checks!'); return false;">Get it on Google Play</a>
             </div>
         </div>
     </section>
@@ -493,7 +539,7 @@
         <div class="footer-branding">
             <h3>FLARIX<span>STUDIOS</span></h3>
             <p>Pushing the technical parameters of independent mobile arcade gaming. Built for players who demand razor-sharp responsiveness and distinct aesthetics.</p>
-            <p style="font-size: 0.95rem; color: rgba(0,240,255,0.6);">&copy; 2026 Flarix Studios. Core Systems Verified.</p>
+            <p style="font-size: 0.95rem; color: rgba(0,240,255,0.5);">&copy; 2026 Flarix Studios. Core Systems Active.</p>
         </div>
         
         <div class="footer-links-grid">
@@ -512,16 +558,16 @@
             
             <div class="footer-column">
                 <h4>Community Nodes</h4>
-                <a href="#discord-dummy" onclick="alert('Discord Server Link integration coming up next track build!'); return false;" class="footer-social-link">
+                <a href="#discord" onclick="alert('Discord Server Hub pipeline compilation upcoming!'); return false;" class="footer-social-link">
                     <i class="fab fa-discord" style="color:#5865F2;"></i> Join Community Discord
                 </a>
-                <a href="#x-dummy" onclick="alert('X Platform handle linking soon!'); return false;" class="footer-social-link">
+                <a href="#x" onclick="alert('Studio X Platform handle setup routing active!'); return false;" class="footer-social-link">
                     <i class="fab fa-x-twitter"></i> Follow Studio X
                 </a>
-                <a href="#insta-dummy" onclick="alert('Instagram asset pipeline setup active!'); return false;" class="footer-social-link">
+                <a href="#instagram" onclick="alert('Instagram asset deployment track configuring!'); return false;" class="footer-social-link">
                     <i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram Behind-Scenes
                 </a>
-                <a href="#facebook-dummy" onclick="alert('Facebook Portal under development setup!'); return false;" class="footer-social-link">
+                <a href="#facebook" onclick="alert('Facebook Portal synchronization under engineering framework!'); return false;" class="footer-social-link">
                     <i class="fab fa-facebook" style="color:#1877F2;"></i> Facebook Channel
                 </a>
             </div>
@@ -530,89 +576,86 @@
 
     <script>
         /* ==========================================================================
-           1. LOOPING MULTI-LINE VISIONARY TYPEWRITER ENGINE
+           1. LOOPING INFINITE BACKSPACE TYPEWRITER RUNTIME
            ========================================================================== */
-        const typewriterPhrases = [
+        const phrases = [
             "Crafting hyper-vibrant, adrenaline-fueled 2D mobile experiences where precise mechanics meet immersive worlds.",
             "Breaking boundaries with Unity 6 to turn bold pixel physics into addictive mobile realities.",
             "Fueled by passion, engineered for flawless performance, and built to challenge your limits."
         ];
         
-        let currentPhraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingTarget = document.getElementById("type-target");
+        let phraseIdx = 0;
+        let charIdx = 0;
+        let isReversing = false;
+        const targetTextElement = document.getElementById("type-target");
         
-        function handleTypewriterLoop() {
-            const currentFullText = typewriterPhrases[currentPhraseIndex];
+        function runTypewriterLoop() {
+            const fullPhraseText = phrases[phraseIdx];
             
-            if (!isDeleting) {
-                // Typing text forwards
-                typingTarget.textContent = currentFullText.substring(0, charIndex + 1);
-                charIndex++;
+            if (!isReversing) {
+                // Forward type run
+                targetTextElement.textContent = fullPhraseText.substring(0, charIdx + 1);
+                charIdx++;
                 
-                if (charIndex === currentFullText.length) {
-                    // Phrase completed! Wait a few seconds for user readability before deletion pass
-                    isDeleting = true;
-                    setTimeout(handleTypewriterLoop, 3000); 
+                if (charIdx === fullPhraseText.length) {
+                    isReversing = true;
+                    setTimeout(runTypewriterLoop, 3000); // Wait time for readability
                     return;
                 }
-                setTimeout(handleTypewriterLoop, 40); // Standard Forward Typing Frame Delay
+                setTimeout(runTypewriterLoop, 45);
             } else {
-                // Deleting text backwards
-                typingTarget.textContent = currentFullText.substring(0, charIndex - 1);
-                charIndex--;
+                // Backspace deletion pass run
+                targetTextElement.textContent = fullPhraseText.substring(0, charIdx - 1);
+                charIdx--;
                 
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    // Switch statement index logic tracking
-                    currentPhraseIndex = (currentPhraseIndex + 1) % typewriterPhrases.length;
-                    setTimeout(handleTypewriterLoop, 400); // Intermission pause before next sentence
+                if (charIdx === 0) {
+                    isReversing = false;
+                    phraseIdx = (phraseIdx + 1) % phrases.length; // Iteration loop step swap
+                    setTimeout(runTypewriterLoop, 400); // Intermission break
                     return;
                 }
-                setTimeout(handleTypewriterLoop, 20); // Faster Backspace Reverse Deletion Frame Delay
+                setTimeout(runTypewriterLoop, 20);
             }
         }
 
         /* ==========================================================================
-           2. HIGH-PERFORMANCE INTERSECTION OBSERVER (SCROLL REVEALS)
+           2. BIDIRECTIONAL SCROLL OBSERVATION LOGIC (Fades In AND Out Both Ways)
            ========================================================================== */
-        const scrollRevealObserver = new IntersectionObserver((entries) => {
+        const bidirectionalObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    entry.target.classList.add('active'); // Slide up & appear on viewport enter
+                } else {
+                    entry.target.classList.remove('active'); // Fade back out on viewport exit (Up or Down)
                 }
             });
         }, {
-            threshold: 0.08, // Fires cleanly when 8% of element cross-section appears inside mobile screen matrix
-            rootMargin: "0px 0px -40px 0px"
+            threshold: 0.05, // Fires smoothly across mobile and screen matrices
+            rootMargin: "0px 0px -20px 0px"
         });
 
-        // Query structural tracks
-        document.querySelectorAll('.reveal-on-scroll').forEach(element => {
-            scrollRevealObserver.observe(element);
+        document.querySelectorAll('.reveal-on-scroll').forEach(sectionNode => {
+            bidirectionalObserver.observe(sectionNode);
         });
 
         /* ==========================================================================
-           3. INTERACTIVE CLICK-TRIGGERED EMOJI PHYSICS
+           3. CARD CLICK EMOJI POP INTERACTION MATRIX
            ========================================================================== */
-        function animateEmoji(cardElement, animationClass) {
-            const emojiSpan = cardElement.querySelector('.card-icon');
+        function animateEmoji(cardNode, targetAnimationClass) {
+            const targetEmojiSpan = cardNode.querySelector('.card-icon');
             
-            // Avoid overlay conflict triggers if animation loop is already running
-            if (emojiSpan.classList.contains(animationClass)) return;
+            if (targetEmojiSpan.classList.contains(targetAnimationClass)) return;
             
-            emojiSpan.classList.add(animationClass);
+            targetEmojiSpan.classList.add(targetAnimationClass);
             
-            // Clean up class state once tracking sequence completes so it can be re-clicked
-            emojiSpan.addEventListener('animationend', () => {
-                emojiSpan.classList.remove(animationClass);
+            targetEmojiSpan.addEventListener('animationend', () => {
+                targetEmojiSpan.classList.remove(targetAnimationClass);
             }, { once: true });
         }
 
-        // Initialize script logic targets on master frame load
+        // Master Frame Init
         window.onload = function() {
-            handleTypewriterLoop();
+            runTypewriterLoop();
         };
     </script>
 </body>
