@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- VIBRANT CYBERPUNK COLOR PALETTE --- */
@@ -51,12 +52,8 @@
         }
 
         @keyframes neonPulse {
-            0% {
-                text-shadow: 0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.2);
-            }
-            100% {
-                text-shadow: 0 0 20px rgba(0, 240, 255, 0.9), 0 0 40px rgba(0, 240, 255, 0.4), 0 0 60px rgba(157, 78, 221, 0.3);
-            }
+            0% { text-shadow: 0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.2); }
+            100% { text-shadow: 0 0 20px rgba(0, 240, 255, 0.9), 0 0 40px rgba(0, 240, 255, 0.4), 0 0 60px rgba(157, 78, 221, 0.3); }
         }
 
         /* --- NAVIGATION --- */
@@ -84,21 +81,10 @@
             transition: transform 0.3s ease;
         }
 
-        .logo:hover {
-            transform: scale(1.05);
-        }
+        .logo:hover { transform: scale(1.05); }
+        .logo span { color: var(--neon-blue); text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
 
-        .logo span {
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
+        nav ul { display: flex; list-style: none; gap: 30px; }
         nav ul a {
             color: var(--text-main);
             text-decoration: none;
@@ -107,11 +93,7 @@
             text-transform: uppercase;
             transition: all 0.3s ease;
         }
-
-        nav ul a:hover {
-            color: var(--neon-blue);
-            text-shadow: 0 0 8px var(--neon-blue);
-        }
+        nav ul a:hover { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
 
         /* --- HERO SECTION --- */
         #hero {
@@ -144,22 +126,42 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* --- ROBUST TYPING ANIMATION CONTAINER --- */
+        /* --- TYPEWRITER CORE STRUCTURE --- */
         .typing-container {
-            min-height: 40px;
-            margin-bottom: 40px;
-            max-width: 800px;
+            min-height: 70px; /* Locked down spacing so layout doesn't bounce when text backspaces */
+            margin-bottom: 30px;
+            max-width: 850px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .typing-text {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--text-muted);
             font-weight: 500;
             border-right: 3px solid var(--neon-blue);
-            white-space: normal;
-            word-break: keep-all;
+            padding-right: 5px;
+            line-height: 1.6;
             animation: blink 0.75s step-end infinite;
         }
+
+        /* --- ULTRAMODERN SCROLL-REVEAL ENGINE --- */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sequenced staggered item reveal spacing */
+        .stagger-1 { transition-delay: 0s; }
+        .stagger-2 { transition-delay: 0.15s; }
+        .stagger-3 { transition-delay: 0.3s; }
 
         /* --- BUTTONS WITH INTERACTIVE HOVER ELEMENTS --- */
         .btn {
@@ -178,7 +180,6 @@
             box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         .btn:hover {
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 8px 30px rgba(0, 240, 255, 0.6);
@@ -232,47 +233,15 @@
             overflow: hidden;
             transition: border-color 0.4s ease, box-shadow 0.4s ease;
         }
+        .game-media:hover { border-color: var(--neon-blue); box-shadow: 0 0 30px rgba(0, 240, 255, 0.25); }
 
-        .game-media:hover {
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
-        }
+        .game-art-file { width: 100%; height: 100%; max-height: 360px; object-fit: cover; border-radius: 10px; }
+        .game-placeholder-ui { text-align: center; padding: 20px; }
 
-        /* Image sizing inside the box slot */
-        .game-art-file {
-            width: 100%;
-            height: 100%;
-            max-height: 360px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
+        .game-info h3 { font-size: 2.8rem; color: #fff; margin-bottom: 20px; }
+        .game-info p { font-size: 1.25rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 25px; text-align: justify; }
 
-        .game-placeholder-ui {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .game-info h3 {
-            font-size: 2.8rem;
-            color: #fff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.1);
-        }
-
-        .game-info p {
-            font-size: 1.25rem;
-            line-height: 1.7;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            text-align: justify;
-        }
-
-        /* --- FIXED: BALANCED & PARALLEL SPECS LIST LAYOUT --- */
-        .specs-list {
-            list-style: none;
-            margin-bottom: 35px;
-        }
-
+        .specs-list { list-style: none; margin-bottom: 35px; }
         .specs-list li {
             font-size: 1.2rem;
             margin-bottom: 14px;
@@ -280,16 +249,11 @@
             grid-template-columns: auto 1fr;
             gap: 15px;
             align-items: start;
-            text-align: left; /* Guaranteed sharp alignment across devices */
+            text-align: left;
         }
+        .specs-icon { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); font-weight: bold; }
 
-        .specs-icon {
-            color: var(--neon-blue);
-            text-shadow: 0 0 8px var(--neon-blue);
-            font-weight: bold;
-        }
-
-        /* --- HIGHLY INTERACTIVE INTERACTION CARDS --- */
+        /* --- MISSION INTERACTIVE CARDS --- */
         .about-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -302,77 +266,129 @@
             border-radius: 12px;
             padding: 45px 30px;
             text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .card:hover {
-            transform: translateY(-12px) scale(1.02);
+            transform: translateY(-8px);
             border-color: var(--neon-blue);
-            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
         }
 
+        /* --- THE ADVANCED EMOJI ENGINE --- */
         .card-icon {
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            display: block;
+            display: inline-block;
+            position: relative;
             transition: transform 0.3s ease;
         }
+        .card:hover .card-icon { transform: scale(1.1); }
 
-        .card:hover .card-icon {
-            transform: rotate(10deg) scale(1.1);
+        /* Custom Emoji Dynamic Animation Sequences */
+        .rocket-blastoff { animation: rocketFly 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards; }
+        .target-ripple { animation: targetPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .bolt-flicker { animation: thunderStrike 0.6s linear infinite alternate; }
+
+        @keyframes rocketFly {
+            0% { transform: scale(1) translate(0, 0); opacity: 1; }
+            40% { transform: scale(1.2) translate(-5px, 10px); }
+            100% { transform: scale(0.2) translate(400px, -400px); opacity: 0; }
+        }
+        @keyframes targetPop {
+            0%, 100% { transform: scale(1); }
+            30% { transform: scale(0.6) rotate(-20deg); }
+            60% { transform: scale(1.4) rotate(15deg); }
+        }
+        @keyframes thunderStrike {
+            0%, 100% { filter: drop-shadow(0 0 2px var(--neon-blue)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 25px var(--neon-blue)) brightness(1.8); transform: scale(1.2) skewX(-10deg); }
         }
 
-        .card h3 {
-            font-size: 1.6rem;
+        /* --- HIGH-FIDELITY CYBERPUNK CONNECT FOOTER --- */
+        .studio-footer {
+            background: #030611;
+            padding: 80px 8% 40px;
+            border-top: 1px solid rgba(0, 240, 255, 0.15);
+            display: grid;
+            grid-template-columns: 1.5fr 2fr;
+            gap: 40px;
+        }
+
+        .footer-branding h3 {
+            font-size: 2rem;
             margin-bottom: 15px;
             color: #fff;
         }
-
-        .card p {
-            font-size: 1.15rem;
+        .footer-branding p {
             color: var(--text-muted);
+            font-size: 1.1rem;
             line-height: 1.6;
+            max-width: 380px;
+            margin-bottom: 25px;
         }
 
-        /* --- RESPONSIVE MEDIA QUERIES --- */
+        .footer-links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .footer-social-link i {
+            font-size: 1.2rem;
+            width: 25px;
+            transition: transform 0.3s ease;
+        }
+        .footer-social-link:hover {
+            color: #fff;
+            text-shadow: 0 0 8px var(--neon-blue);
+            transform: translateX(4px);
+        }
+        .footer-social-link:hover i {
+            transform: scale(1.2);
+            color: var(--neon-blue);
+        }
+
+        /* MEDIA QUERIES */
         @media (max-width: 968px) {
-            .game-showcase {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            #hero h1 {
-                font-size: 3.2rem;
-            }
-            .typing-text {
-                font-size: 1.2rem;
-            }
-            section {
-                padding: 80px 5%;
-            }
+            .game-showcase, .studio-footer { grid-template-columns: 1fr; gap: 40px; }
+            #hero h1 { font-size: 3.2rem; }
+            .typing-text { font-size: 1.2rem; }
+            section { padding: 80px 5%; }
+            .footer-links-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 480px) {
-            nav ul {
-                gap: 15px;
-            }
-            nav ul a {
-                font-size: 0.9rem;
-            }
-            .logo {
-                font-size: 1.2rem;
-            }
+            nav ul { gap: 15px; }
+            nav ul a { font-size: 0.9rem; }
+            .logo { font-size: 1.2rem; }
         }
 
-        /* --- ANIMATION KEYFRAMES --- */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: var(--neon-blue); }
-        }
+        /* FLOATING GRAPHIC KEYFRAMES */
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--neon-blue); } }
     </style>
 </head>
 <body>
@@ -398,6 +414,18 @@
     </section>
 
     <section id="games">
+        <h2 class="section-title">Our Games</h2>
+        
+        <div class="game-showcase">
+            <div class="game-media">
+                <img src="poor-bird-art.png" alt="Poor Bird Showcase Art" class="game-art-file" onerror="this.style.display='none';">
+                <div class="game-placeholder-ui">
+                    <h4 style="font-family:'Orbitron'; font-size:2.2rem; color:var(--neon-blue); margin-bottom:10px; letter-spacing:2px;">POOR BIRD</h4>
+                    <p style="color:var(--text-muted); font-size:1.1rem; font-family:'Orbitron';">10 Levels of Pure Side-Scrolling Challenge</p>
+                </div>
+            </div>
+            
+            <section id="games" class="reveal-on-scroll">
         <h2 class="section-title">Our Games</h2>
         
         <div class="game-showcase">
@@ -437,21 +465,23 @@
         </div>
     </section>
 
-    <section id="about">
+    <section id="about" class="reveal-on-scroll">
         <h2 class="section-title">The Studio Mission</h2>
         
         <div class="about-cards">
-            <div class="card">
+            <div class="card reveal-on-scroll stagger-1" onclick="animateEmoji(this, 'target-ripple')">
                 <span class="card-icon">🎯</span>
                 <h3>Precision Focus</h3>
                 <p>We believe mobile gaming shouldn't compromise mechanics. Our design rules prioritize snappy inputs and pixel-perfect hitboxes.</p>
             </div>
-            <div class="card">
+            
+            <div class="card reveal-on-scroll stagger-2" onclick="animateEmoji(this, 'bolt-flicker')">
                 <span class="card-icon">⚡</span>
                 <h3>Vibrant Aesthetic</h3>
                 <p>Striking contrast identities, dynamic neon lighting maps, and beautiful particle setups form the baseline artistic identity of our games.</p>
             </div>
-            <div class="card">
+            
+            <div class="card reveal-on-scroll stagger-3" onclick="animateEmoji(this, 'rocket-blastoff')">
                 <span class="card-icon">🚀</span>
                 <h3>Independent Power</h3>
                 <p>Handling every single technical phase of execution directly—from core C# assembly logic optimization to production target delivery tracks.</p>
@@ -459,24 +489,131 @@
         </div>
     </section>
 
-    <footer style="background: #010206; padding: 40px 5%; text-align: center; font-size: 1.1rem; color: var(--text-muted); border-top: 1px solid rgba(0, 240, 255, 0.08);">
-        <p>&copy; 2026 <span style="color: var(--neon-blue); font-weight: bold;">Flarix Studios</span>. All rights reserved.</p>
+    <footer class="studio-footer">
+        <div class="footer-branding">
+            <h3>FLARIX<span>STUDIOS</span></h3>
+            <p>Pushing the technical parameters of independent mobile arcade gaming. Built for players who demand razor-sharp responsiveness and distinct aesthetics.</p>
+            <p style="font-size: 0.95rem; color: rgba(0,240,255,0.6);">&copy; 2026 Flarix Studios. Core Systems Verified.</p>
+        </div>
+        
+        <div class="footer-links-grid">
+            <div class="footer-column">
+                <h4>Verified HQ</h4>
+                <a href="https://www.youtube.com/@FlarixStudios" target="_blank" class="footer-social-link">
+                    <i class="fab fa-youtube" style="color:#ff0000;"></i> Subscribe on YouTube
+                </a>
+                <a href="mailto:flarixstudios@gmail.com" class="footer-social-link">
+                    <i class="fas fa-envelope" style="color:#00f0ff;"></i> Contact Studio Email
+                </a>
+                <a href="https://muhammadzeeshanriaz99-pixel.github.io/poor-bird-privacy/" target="_blank" class="footer-social-link">
+                    <i class="fas fa-user-shield" style="color:#9d4edd;"></i> Privacy Policy Link
+                </a>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Community Nodes</h4>
+                <a href="#discord-dummy" onclick="alert('Discord Server Link integration coming up next track build!'); return false;" class="footer-social-link">
+                    <i class="fab fa-discord" style="color:#5865F2;"></i> Join Community Discord
+                </a>
+                <a href="#x-dummy" onclick="alert('X Platform handle linking soon!'); return false;" class="footer-social-link">
+                    <i class="fab fa-x-twitter"></i> Follow Studio X
+                </a>
+                <a href="#insta-dummy" onclick="alert('Instagram asset pipeline setup active!'); return false;" class="footer-social-link">
+                    <i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram Behind-Scenes
+                </a>
+                <a href="#facebook-dummy" onclick="alert('Facebook Portal under development setup!'); return false;" class="footer-social-link">
+                    <i class="fab fa-facebook" style="color:#1877F2;"></i> Facebook Channel
+                </a>
+            </div>
+        </div>
     </footer>
 
     <script>
-        const textStr = "Crafting hyper-vibrant, adrenaline-fueled 2D mobile experiences where precise mechanics meet immersive worlds.";
-        let index = 0;
-        const speed = 40; // typing speed in milliseconds
+        /* ==========================================================================
+           1. LOOPING MULTI-LINE VISIONARY TYPEWRITER ENGINE
+           ========================================================================== */
+        const typewriterPhrases = [
+            "Crafting hyper-vibrant, adrenaline-fueled 2D mobile experiences where precise mechanics meet immersive worlds.",
+            "Breaking boundaries with Unity 6 to turn bold pixel physics into addictive mobile realities.",
+            "Fueled by passion, engineered for flawless performance, and built to challenge your limits."
+        ];
         
-        function typeWriter() {
-            if (index < textStr.length) {
-                document.getElementById("type-target").innerHTML += textStr.charAt(index);
-                index++;
-                setTimeout(typeWriter, speed);
+        let currentPhraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingTarget = document.getElementById("type-target");
+        
+        function handleTypewriterLoop() {
+            const currentFullText = typewriterPhrases[currentPhraseIndex];
+            
+            if (!isDeleting) {
+                // Typing text forwards
+                typingTarget.textContent = currentFullText.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentFullText.length) {
+                    // Phrase completed! Wait a few seconds for user readability before deletion pass
+                    isDeleting = true;
+                    setTimeout(handleTypewriterLoop, 3000); 
+                    return;
+                }
+                setTimeout(handleTypewriterLoop, 40); // Standard Forward Typing Frame Delay
+            } else {
+                // Deleting text backwards
+                typingTarget.textContent = currentFullText.substring(0, charIndex - 1);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    // Switch statement index logic tracking
+                    currentPhraseIndex = (currentPhraseIndex + 1) % typewriterPhrases.length;
+                    setTimeout(handleTypewriterLoop, 400); // Intermission pause before next sentence
+                    return;
+                }
+                setTimeout(handleTypewriterLoop, 20); // Faster Backspace Reverse Deletion Frame Delay
             }
         }
-        // Launch animation on page initialization
-        window.onload = typeWriter;
+
+        /* ==========================================================================
+           2. HIGH-PERFORMANCE INTERSECTION OBSERVER (SCROLL REVEALS)
+           ========================================================================== */
+        const scrollRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.08, // Fires cleanly when 8% of element cross-section appears inside mobile screen matrix
+            rootMargin: "0px 0px -40px 0px"
+        });
+
+        // Query structural tracks
+        document.querySelectorAll('.reveal-on-scroll').forEach(element => {
+            scrollRevealObserver.observe(element);
+        });
+
+        /* ==========================================================================
+           3. INTERACTIVE CLICK-TRIGGERED EMOJI PHYSICS
+           ========================================================================== */
+        function animateEmoji(cardElement, animationClass) {
+            const emojiSpan = cardElement.querySelector('.card-icon');
+            
+            // Avoid overlay conflict triggers if animation loop is already running
+            if (emojiSpan.classList.contains(animationClass)) return;
+            
+            emojiSpan.classList.add(animationClass);
+            
+            // Clean up class state once tracking sequence completes so it can be re-clicked
+            emojiSpan.addEventListener('animationend', () => {
+                emojiSpan.classList.remove(animationClass);
+            }, { once: true });
+        }
+
+        // Initialize script logic targets on master frame load
+        window.onload = function() {
+            handleTypewriterLoop();
+        };
     </script>
 </body>
 </html>
