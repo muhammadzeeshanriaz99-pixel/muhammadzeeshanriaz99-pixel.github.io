@@ -205,6 +205,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        #particles {
+            position:fixed;
+            inset:0;
+            z-index:-1;
+            pointer-events:none;
+        }
 
         /* --- TYPEWRITER SPACING BOUNDS --- */
         .typing-container {
@@ -680,6 +686,7 @@
     </style>
 </head>
 <body>
+    <div id="particles"></div>
 
     <nav>
         <a href="#" class="logo">FLARIX<span>STUDIOS</span></a>
@@ -963,5 +970,6 @@
             runTypewriterLoop();
         });
 </script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 </body>
 </html>
