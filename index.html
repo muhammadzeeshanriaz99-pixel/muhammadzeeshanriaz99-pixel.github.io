@@ -47,6 +47,22 @@
             letter-spacing: 2px;
         }
 
+        .cursor-glow {
+            position:fixed;
+            width:350px;
+            height:350px;
+            border-radius:50%;
+            background:radial-gradient(
+                circle,
+                rgba(0,240,255,.12),
+                transparent 70%
+            );
+        
+            pointer-events:none;
+            z-index:0;
+            transform:translate(-50%,-50%);
+        }
+
         /* --- ANIMATED DEEP NEON GLOW --- */
         .neon-glow {
             animation: neonPulse 3s ease-in-out infinite alternate;
@@ -82,6 +98,11 @@
             font-family: 'Orbitron', sans-serif;
             transition: transform 0.3s ease;
             flex-shrink: 0;
+        }
+        .hero-logo {
+            animation:
+                heroEntry 1.4s ease-out,
+                float 4s ease-in-out infinite 1.4s;
         }
 
         .logo:hover { transform: scale(1.05); }
@@ -195,6 +216,19 @@
             animation: float 4s ease-in-out infinite;
             object-fit: contain;
         }
+        @keyframes heroEntry {
+
+            0% {
+                opacity:0;
+                transform:scale(.4) rotate(-30deg);
+            }
+        
+            100% {
+                opacity:1;
+                transform:scale(1) rotate(0);
+            }
+        
+        }
 
         #hero h1 {
             font-size: 4.5rem;
@@ -291,10 +325,41 @@
             letter-spacing: 1px;
         }
 
+        animation:buttonPulse 3s infinite;
+
+        @keyframes buttonPulse {
+
+            0%,100% {
+                box-shadow:
+                0 0 15px rgba(0,240,255,.4);
+            }
+        
+            50% {
+                box-shadow:
+                0 0 35px rgba(0,240,255,.8);
+            }
+        
+        }
+
         /* --- SECTIONS BASE --- */
         section {
             padding: 120px 10%;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .section-divider {
+            height:2px;
+            width:100%;
+            background:
+            linear-gradient(
+                90deg,
+                transparent,
+                var(--neon-blue),
+                var(--electric-purple),
+                transparent
+            );
+        
+            opacity:.4;
         }
 
         .section-title {
@@ -459,6 +524,25 @@
             transform: translateY(-8px);
             border-color: var(--neon-blue);
             box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
+        }
+
+        .card::before {
+            content:'';
+            position:absolute;
+            inset:0;
+            background:linear-gradient(
+                135deg,
+                transparent,
+                rgba(0,240,255,.08),
+                transparent
+            );
+        
+            transform:translateX(-100%);
+        }
+
+        .card:hover::before {
+            transform:translateX(100%);
+            transition:1s;
         }
 
         /* Custom Card Typography Spacing Elements */
@@ -688,6 +772,8 @@
 <body>
     <div id="particles"></div>
 
+    <div class="cursor-glow"></div>
+
     <nav>
         <a href="#" class="logo">FLARIX<span>STUDIOS</span></a>
 
@@ -713,6 +799,7 @@
     </nav>
 
     <section id="hero">
+        <div class="section-divider"></div>
         <img src="Developer Icon.png" alt="Flarix Logo" class="hero-logo" onerror="this.src='Removal-40.png'">
         <h1 class="neon-glow">Flarix Studios</h1>
         
@@ -723,7 +810,10 @@
         <a href="#games" class="btn">Explore Our Projects</a>
     </section>
 
+    <section class="stats">
+
     <section id="games" class="reveal-on-scroll">
+        <div class="section-divider"></div>
         <h2 class="section-title reveal-on-scroll">Our Games</h2>
         
         <div class="game-showcase">
@@ -736,7 +826,11 @@
             <div class="game-info reveal-on-scroll stagger-2">
                 <h3>Poor Bird</h3>
                 <p>Prepare for an intense, precision-based journey! Poor Bird challenges players to navigate hazardous environments with flawless timing and responsive movement. Engineered inside Unity with perfectly tuned 2D physics optimization, every single tap dictates survival.</p>
-                
+
+                <h4>Currently Developing</h4>
+                <p>Project Falcon
+                    Coming Soon...
+                </p>
                 <ul class="specs-list">
                     <li>
                         <span class="specs-icon">⚡</span>
@@ -762,7 +856,14 @@
     </section>
 
     <section id="about">
+        <div class="section-divider"></div>
         <h2 class="section-title reveal-on-scroll">The Studio Mission</h2>
+
+        <i class="fas fa-bullseye"></i>
+        
+        <i class="fas fa-bolt"></i>
+        
+        <i class="fas fa-rocket"></i>
         
         <div class="about-cards">
             <div class="card reveal-on-scroll stagger-1" 
@@ -848,6 +949,13 @@
             "Breaking boundaries with Unity 6 to turn bold pixel physics into addictive mobile realities.",
             "Fueled by passion, engineered for flawless performance, and built to challenge your limits."
         ];
+
+        const glow=document.querySelector('.cursor-glow');
+
+        document.addEventListener('mousemove',(e)=>{
+            glow.style.left=e.clientX+'px';
+            glow.style.top=e.clientY+'px';
+        });
 
         let phraseIdx = 0;
         let charIdx = 0;
