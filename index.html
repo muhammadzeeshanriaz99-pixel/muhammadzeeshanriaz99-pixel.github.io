@@ -57,13 +57,6 @@
             100% { text-shadow: 0 0 20px rgba(0, 240, 255, 0.9), 0 0 40px rgba(0, 240, 255, 0.4), 0 0 60px rgba(157, 78, 221, 0.3); }
         }
 
-        .hamburger {
-            margin-right:15px;
-        }
-        nav {
-            padding:15px 20px;
-        }
-
         /* --- NAVIGATION RIBBON --- */
         nav {
             display: flex;
@@ -130,7 +123,7 @@
         }
 
         .mobile-nav-panel {
-            display: flex;
+            display: none;
             position: absolute;
             top: calc(100% + 10px);
             right: 5%;
@@ -138,26 +131,23 @@
             background: rgba(3, 6, 17, 0.97);
             border: 1px solid rgba(0, 240, 255, 0.15);
             border-radius: 18px;
-            padding: 0 16px;
+            padding: 16px;
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
             backdrop-filter: blur(18px);
             transform: translateY(-12px);
             opacity: 0;
             pointer-events: none;
-            max-height: 0;
-            overflow: hidden;
-            transition: transform 0.35s ease, opacity 0.35s ease, max-height 0.35s ease, padding 0.35s ease;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+        }
+        .mobile-nav-panel.open {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
             justify-content: center;
             align-items: center;
             gap: 18px;
             flex-wrap: wrap;
-        }
-        .mobile-nav-panel.open {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
-            max-height: 120px;
-            padding: 16px;
         }
         .mobile-nav-panel a {
             color: var(--text-main);
@@ -301,55 +291,44 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        /* .section-title {
+        .section-title {
+            width: 100%;
+            display: block;
             text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 60px;
+            margin: 0 auto 60px;
+            font-size: clamp(2.9rem, 4.8vw, 4.7rem);
+            line-height: 1.1;
             text-transform: uppercase;
             position: relative;
-            background: linear-gradient(45deg, #ffffff, #cceeff, var(--neon-blue), var(--electric-purple));
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #ffffff, #00f0ff, #9d4edd, #00f0ff, #ffffff);
+            background-size: 300% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        } */
+            animation: titleFlow 5s linear infinite;
+            text-shadow: 0 0 18px rgba(0, 240, 255, 0.12);
+        }
 
-        .section-title {
+        .section-title.reveal-on-scroll {
+            opacity: 0;
+            transform: translateX(-110px);
+            will-change: transform, opacity, background-position;
+        }
 
-            background: linear-gradient(
-                90deg,
-                #ffffff,
-                #00f0ff,
-                #9d4edd,
-                #00f0ff,
-                #ffffff
-            );
-        
-            background-size:300% auto;
-        
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-        
-            animation:titleFlow 5s linear infinite;
+        .section-title.reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         @keyframes titleFlow {
-
-            0% {
-                background-position:0% center;
-            }
-        
-            100% {
-                background-position:300% center;
-            }
-        
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
         }
+
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 110px;
             height: 4px;
             background: linear-gradient(90deg, var(--neon-blue), var(--electric-purple));
             margin: 12px auto 0;
@@ -592,28 +571,30 @@
 
         .social-icon-badge {
             background-color: #ffffff;
-            color: #000000 !important;
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 8px;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
             transition: transform 0.3s ease;
-            flex: 0 0 26px;
+            flex: 0 0 28px;
         }
-        .social-icon-badge i {
-            color: #000 !important;
-            font-size: 1rem;
-            line-height: 1;
+        .social-icon-badge svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+        .social-icon-badge path {
+            stroke: #111;
+            stroke-width: 2.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
         }
         .footer-social-link:hover .social-icon-badge {
             transform: scale(1.12);
-        }
-        .x-icon {
-            color:#000 !important;
-            font-size:14px;
         }
 
         /* --- RESPONSIVE CROSS-OVER MEDIA QUERIES --- */
@@ -623,7 +604,6 @@
                 gap: 45px;
             }
             #hero h1 { font-size: 3.5rem; }
-            .section-title { font-size: 2.4rem; }
             section { padding: 80px 6%; }
         }
 
@@ -633,84 +613,65 @@
             nav { padding: 16px 5%; }
             .mobile-nav-panel.open { display: flex; }
             .mobile-nav-panel { right: 4%; left: 4%; }
-        }
 
-        @media (max-width: 600px) {
-            .footer-links-grid { grid-template-columns: 1fr; gap: 30px; }
-            .logo { font-size: 1.15rem; letter-spacing: 2px; }
+            .section-title {
+                font-size: clamp(2rem, 7vw, 2.55rem);
+                line-height: 1.2;
+                padding: 0 14px;
+                letter-spacing: 1px;
+                margin-bottom: 42px;
+                transform: translateX(-48px);
+            }
+
+            .game-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .game-info p {
+                text-align: left;
+            }
+
+            .game-media-title {
+                font-size: 1.6rem;
+            }
+
+            .game-info h3 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+
             .typing-text { font-size: 1.05rem; }
-            .game-info h3 { font-size: 2.1rem; }
-            .section-title { font-size: 2rem; }
-            .game-media-title { font-size: 1.6rem; }
+
             .mobile-nav-panel {
                 gap: 10px;
             }
+
             .mobile-nav-panel a {
                 font-size: 0.92rem;
                 padding: 10px 11px;
             }
         }
 
-        @media (max-width:768px) {
+        @media (max-width: 600px) {
+            .footer-links-grid { grid-template-columns: 1fr; gap: 30px; }
+            .logo { font-size: 0.95rem; letter-spacing: 1px; }
+            .typing-text { font-size: 0.98rem; }
+            .game-info h3 { font-size: 1.95rem; }
+            .section-title { font-size: clamp(1.85rem, 8vw, 2.2rem); }
+            .game-media-title { font-size: 1.55rem; }
+            .mobile-nav-panel { gap: 10px; }
+            .mobile-nav-panel a { font-size: 0.9rem; padding: 10px 11px; }
+        }
 
+        @media (max-width: 480px) {
             .section-title {
-                font-size:1.9rem;
-                line-height:1.3;
-                padding:0 15px;
-                word-break:break-word;
-                overflow-wrap:break-word;
+                font-size: clamp(1.7rem, 8vw, 2rem);
+                padding: 0 12px;
             }
-        
-        }
-
-        @media (max-width:480px) {
-
-            .section-title {
-                font-size:1.6rem;
-            }
-        
-        }
-
-        @media (max-width:768px) {
-
-            nav {
-                padding:15px;
-            }
-        
-            .logo {
-                font-size:1rem;
-                letter-spacing:1px;
-            }
-        
-        }
-
-        @media (max-width:768px) {
-
-            .game-showcase {
-                grid-template-columns:1fr;
-            }
-        
-            .game-info p {
-                text-align:left;
-            }
-        
-            .game-media-title {
-                font-size:1.6rem;
-            }
-        
-            .game-info h3 {
-                font-size:2rem;
-            }
-        
-        }
-
-        @media (max-width:768px) {
-
-            .logo {
-                font-size:0.95rem;
-                letter-spacing:1px;
-            }
-        
         }
 
         /* FLOATING COMPONENT KEYFRAMES */
@@ -853,8 +814,11 @@
                     <i class="fab fa-discord" style="color:#5865F2;"></i> Join Community Discord
                 </a>
                 <a href="https://x.com/FlarixStudios" target="_blank" class="footer-social-link">
-                    <span class="x-white-badge">
-                        <i class="fab fa-x-twitter x-icon"></i>
+                    <span class="social-icon-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img" aria-label="X logo">
+                            <path d="M4 4 L20 20"></path>
+                            <path d="M20 4 L4 20"></path>
+                        </svg>
                     </span>
                     Follow Studio X
                 </a>
@@ -988,6 +952,10 @@
             if (window.innerWidth > 768) {
                 closeMobileMenu();
             }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeMobileMenu();
         });
 
         // Initialize Runtime Frames
